@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="jquery.js"></script>
+	<script src="cargar.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans|Poppins" rel="stylesheet">
-	<script src="js/script.js"></script>
+	
 	<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Portafolio - Samantha Arburola</title>
@@ -55,13 +58,14 @@
 
 			<section class="col-12 portafolio">
 				<h3>Proyectos Desarrollados</h3>
-				<table class="col-12" onload="php/project.php">
+				<table class="col-12">
 					<thead>
 						<th class="col-2 myTh">Semestre</th>
 						<th class="col-3 myTh">Curso</th>
 						<th class="col-3 myTh">Nombre</th>
 						<th class="col-3 lasTh">Resumen</th>
 					</thead>
+
 					<?php
 						$servername = "mississippi.ic-itcr.ac.cr";
 						$username = "sarburola";
@@ -76,7 +80,11 @@
 
 					if (mysqli_num_rows($result) > 0) {
 						while($row = mysqli_fetch_assoc($result)) {
-						echo "<tr class='myTr'><td><a ".$row["idProyecto"]."onclick='viewProject(".$row["idProyecto"].")' href='proyecto.php'>".$row["semestre"]."</a></td><td>".$row["idCurso"]."</td><td>".$row["nombre"]."</td><td>".$row["resumen"]."</td></tr>";
+						echo "<tr class='myTr'>
+						<td><a class='plink' id='".$row["idProyecto"]."' href='#'>".$row["semestre"]."</a></td>
+						<td>".$row["idCurso"]."</td>
+						<td>".$row["nombre"]."</td>
+						<td>".$row["resumen"]."</td></tr>";
 						}
 					}
 
@@ -87,6 +95,9 @@
 
 		</articles>
 	</main>
+
+	<a class="plink" id="2" href="#">help</a>
+	
 	<footer class="col-12">
 	<p>
 		© 2017 by Samantha Arburola - Introducción al Desarrollo de Aplicaciones Web

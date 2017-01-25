@@ -28,6 +28,12 @@
 	<main>
 		<articles class="col-12">
 			<section class="col-12 datas">
+
+			<?php
+				$var = $_GET["pro"];
+				echo "$var";
+			
+			?>
 				<h2>Portafolio de Proyectos</h2>
                 <h3>Estimacao</h3>
 				<dl class="col-12 proyecto">
