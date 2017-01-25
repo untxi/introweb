@@ -62,6 +62,26 @@
 						<th class="col-3 myTh">Nombre</th>
 						<th class="col-3 lasTh">Resumen</th>
 					</thead>
+					<?php
+						$servername = "mississippi.ic-itcr.ac.cr";
+						$username = "sarburola";
+						$password = "sarburola";
+						$dbname = "sarburola";
+
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+
+					$sql = "SELECT idProyecto, idCurso, nombre, resumen, semestre FROM proyecto";
+					$result = mysqli_query($conn, $sql);
+
+					if (mysqli_num_rows($result) > 0) {
+						while($row = mysqli_fetch_assoc($result)) {
+						echo "<tr class='myTr'><td><a ".$row["idProyecto"]."onclick='viewProject(".$row["idProyecto"].")' href='proyecto.php'>".$row["semestre"]."</a></td><td>".$row["idCurso"]."</td><td>".$row["nombre"]."</td><td>".$row["resumen"]."</td></tr>";
+						}
+					}
+
+					mysqli_close($conn);
+					?>
 				</table>
 			</section>
 
