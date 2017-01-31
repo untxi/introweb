@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans|Poppins" rel="stylesheet">
 	<meta charset="UTF-8" />
@@ -15,11 +16,11 @@
 
 	<nav>
 		<ul>
-			<li><a href="index.html">Inicio</a></li>
-			<li><a href="formacion.html">Formación</a></li>
-			<li><a href="intereses.html">Intereses Personales</a></li>
-			<li class="active"><a href="portafolio.html">Portafolio de Proyectos</a></li>
-			<li><a href="contacto.html">Contáctame</a></li>
+			<li><a href="index.php">Inicio</a></li>
+			<li><a href="formacion.php">Formación</a></li>
+			<li><a href="intereses.php">Intereses Personales</a></li>
+			<li class="active"><a href="portafolio.php">Portafolio de Proyectos</a></li>
+			<li><a href="contacto.php">Contáctame</a></li>
 		</ul>
 	</nav>
 
@@ -29,13 +30,27 @@
 				<h2>Portafolio de Proyectos</h2>
 				<dl>
 					<dt>Proyecto</dt>
-					<dd><input type="text"></dd>
+					<dd><input id="nombre" type="text"></dd>
 
 					<dt>Curso</dt>
 					<dd>
                         <select name="curso" id="curso" onchange="selCourse()">
                             <option value="0">Seleccione</option>
-                            <option value="1">IDAW</option>
+                            <?php
+                            #<option value="1">IDAW</option>
+                            include ("php/conx.php");
+                            $sql = "SELECT idCurso, nombre FROM curso";
+							$result = mysqli_query($conn, $sql);
+
+							if (mysqli_num_rows($result) > 0) {
+								while($row = mysqli_fetch_assoc($result)) {
+								echo "<option value=".$row["idCurso"].">".$row["nombre"]."</option>";
+								}
+							}
+
+							mysqli_close($conn);
+
+                            ?>
                             <option value="n">Nuevo Curso</option>
                         </select>
                         <?php
@@ -43,25 +58,37 @@
                         ?>
 
                         <div class="oculta" id="addCourse">
-                            Código: <input id="codigo" type="text" onchange="checkCode()">
-                            Nombre: <input id="curso" type="text">
+                            Código: <input id="cursoCodigo" type="text" onchange="checkCode()">
+                            Nombre: <input id="cursoNombre" type="text">
                             <button onclick="newCourse()">Enviar</button>
                             <button id="idCancelCourse" onclick="cancelCourse()">Cancelar</button>
                         </div>
                     </dd>
                     
 					<dt>Resumen</dt>
-					<dd><input type="text"></dd>
+					<dd><input id="resumen" type="text"></dd>
 
 					<dt>Descripción</dt>
-					<dd><input type="text"></dd>
+					<dd><input id="descripcion" type="text"></dd>
                     
                     <dt>Tecnologías Utilizadas</dt>
-					<dd><input type="checkbox" name="c++">C++</dd>
-                    <dd><input type="checkbox" name="c">C</dd>
-                    <dd><input type="checkbox" name="java">Java</dd>
-                    <dd><input type="checkbox" name="tec">TEC</dd>
-                    <dd><span id="idAddTech" onclick="addTech()">Agregar</span>
+                    
+					<?php
+                        include ("php/conx.php");
+                        $sql = "SELECT idTecnologia, nombre FROM tecnologia";
+						$result = mysqli_query($conn, $sql);
+
+						if (mysqli_num_rows($result) > 0) {
+							while($row = mysqli_fetch_assoc($result)) {
+							echo "<dd><input id='".$row["idTecnologia"]."' type='checkbox' name='tec'>".$row["nombre"]."</dd>";
+							}
+						}
+
+						mysqli_close($conn);
+
+                    ?>
+
+                    <dd><button id="idAddTech" onclick="addTech()">Agregar</button>
                         <div class="oculta" id="newTech">
                             Nombre: <input id="tech" type="text">
                             <button onclick="">Guardar</button>
@@ -75,18 +102,20 @@
                     <dd><input type="radio" name="projectType">Infraestructura</dd>
 
 					<dt>Forma de Trabajo</dt>
-					<dd><select name="grupo" id="grupo" onchange="setGroup()">
-                            <option value="g1">Individual</option>
-                        <option value="n">Grupal</option>
+					<dd><select name="grupo" id="grupo" onchange="grupo()">
+                        <option value="i">Individual</option>
+                        <option value="g">Grupal</option>
                         </select>
                     </dd>
-					<dd><div class="oculta">
-                        <dd>Cantidad de Integrantes <input type="number" min="1"></dd>
+					<div class="oculta" id="divInte">
+                        <dd>Cantidad de Integrantes
+                        	<input type="number" min="1">
+                        </dd>
+                    </div>
 					   <dd>Rol <input type="text"></dd>
-                        </div>
 
 
-					<dt>Galería</dt>
+					<dt>Galería (((no disponible)))</dt>
 					<dd>
                         <button onclick="addPic()">Agregar</button>
                         <div class="visible">

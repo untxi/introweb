@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="jquery.js"></script>
-	<script src="cargar.js"></script>
-
     <link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Josefin+Sans|Poppins" rel="stylesheet">
 	
@@ -67,28 +64,7 @@
 					</thead>
 
 					<?php
-						$servername = "mississippi.ic-itcr.ac.cr";
-						$username = "sarburola";
-						$password = "sarburola";
-						$dbname = "sarburola";
-
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-
-					$sql = "SELECT idProyecto, idCurso, nombre, resumen, semestre FROM proyecto";
-					$result = mysqli_query($conn, $sql);
-
-					if (mysqli_num_rows($result) > 0) {
-						while($row = mysqli_fetch_assoc($result)) {
-						echo "<tr class='myTr'>
-						<td><a class='plink' id='".$row["idProyecto"]."' href='#'>".$row["semestre"]."</a></td>
-						<td>".$row["idCurso"]."</td>
-						<td>".$row["nombre"]."</td>
-						<td>".$row["resumen"]."</td></tr>";
-						}
-					}
-
-					mysqli_close($conn);
+						include("php/projects.php");
 					?>
 				</table>
 			</section>
@@ -96,13 +72,14 @@
 		</articles>
 	</main>
 
-	<a class="plink" id="2" href="#">help</a>
-	
 	<footer class="col-12">
 	<p>
 		© 2017 by Samantha Arburola - Introducción al Desarrollo de Aplicaciones Web
     </p>
 	</footer>
+	
+	<script src="jquery.js"></script>
+	<script src="cargar.js"></script>
 </body>
 </html>
 

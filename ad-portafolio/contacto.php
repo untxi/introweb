@@ -17,11 +17,11 @@
 
 	<nav class="col-12">
 		<ul>
-			<li class="col-2"><a href="index.html">Inicio</a></li>
-			<li class="col-2"><a href="formacion.html">Formación</a></li>
-			<li class="col-2"><a href="intereses.html">Intereses Personales</a></li>
-			<li class="col-2"><a href="portafolio.html">Portafolio de Proyectos</a></li>
-			<li class="col-2 active"><a href="contacto.html">Contáctame</a></li>
+			<li class="col-2"><a href="index.php">Inicio</a></li>
+			<li class="col-2"><a href="formacion.php">Formación</a></li>
+			<li class="col-2"><a href="intereses.php">Intereses Personales</a></li>
+			<li class="col-2"><a href="portafolio.php">Portafolio de Proyectos</a></li>
+			<li class="col-2 active"><a href="contacto.php">Contáctame</a></li>
 		</ul>
 	</nav>
 
